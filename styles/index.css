@@ -13,3 +13,16 @@ div.header {
   justify-content: space-between;
   align-items: center;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form > div {
+  padding: 2rem 0rem;
+}
+
+form > button {
+  width: fit-content;
+}

@@ -3,9 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/index.css" />
   <title>Library - Add a Book</title>
 </head>
 <body>
   <h1>Add a Book</h1>
+  <div class="content">
+    <form method="post" action="index.html">
+      <div>
+        <label for="title">Title</label>
+        <input name="title" id="title" type="text" placeholder="Add your book title" />
+      </div>
+      <div>
+        <label for="author">Author</label>
+        <input name="author" id="author" type="text" placeholder="Author's name" />
+      </div>    
+      <div>
+        <label for="page_num">Number of pages</label>
+        <input name="page_num" id="page_num" type="number" min="1" />
+       </div>
+       <div>
+        <label for="book_cover">Book Cover</label>
+        <input name="book_cover" id="book_cover" type="url" placeholder="Image URL here" />
+       </div>
+      <button type="submit">Add book</button>
+    </form>
+  </div>
 </body>
 </html>
