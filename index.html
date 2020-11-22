@@ -4,33 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/index.css" />
+  <script src="scripts/index.js"></script>
   <title>Library - Chow Jia Ying</title>
 </head>
 <body>
   <div class="header">
     <h1>Library of Books</h1>
-    <button>Add a Book</button>
+    <button onclick="goToAddBook()">Add a Book</button>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Is Read</th>
-        <th>Book Cover</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox" /></td>
-        <td><img src="./assets/open-book.svg" /></td>
-        <td>Modern Operating Systems</td>
-        <td>Tanenbaum, Andrew S.</td>
-        <td><button>x</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th>Is Read</th>
+          <th>Book Cover</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Number of Pages</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td><img src="./assets/open-book.svg" /></td>
+          <td>Modern Operating Systems</td>
+          <td>Tanenbaum, Andrew S.</td>
+          <td>200</td>
+          <td><button>x</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 <footer>
   <div>Icons made by <a href="https://www.flaticon.com/authors/zlatko-najdenovski" title="Zlatko Najdenovski">Zlatko Najdenovski</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
