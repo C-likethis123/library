@@ -2,3 +2,14 @@ html {
   margin: 0 10%;
   font-family: 'Arial';
 }
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+div.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
