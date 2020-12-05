@@ -19,7 +19,7 @@ Book.prototype.deleteBook = function(bookToDelete) {
 }
 
 Book.prototype.renderBook = function() {
-  const { title, author, page_num, book_cover, isRead, id } = this
+  const { title, author, page_num, book_cover, isRead } = this
   const bookRow = document.createElement("tr")
   // render checkbox
   const checkbox = document.createElement("input")
@@ -40,6 +40,17 @@ Book.prototype.renderBook = function() {
   const bookTitleCell = document.createElement("td")
   bookTitleCell.textContent = title
   bookRow.appendChild(bookTitleCell)
+
+  // render author
+  const bookAuthorCell = document.createElement("td")
+  bookAuthorCell.textContent = author
+  bookRow.appendChild(bookAuthorCell)
+
+  // render page number
+  const bookPageNumberCell = document.createElement("td")
+  bookPageNumberCell.textContent = page_num
+  bookRow.appendChild(bookPageNumberCell)
+
   return bookRow
 }
 
