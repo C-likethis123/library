@@ -11,7 +11,7 @@ function Book(title, author='', page_num=0, book_cover) {
   this.page_num = page_num
   this.book_cover = book_cover
   this.isRead = false
-  this.id = (new Date()).toLocaleString()
+  this.id = Date.now()
 }
 
 Book.prototype.deleteBook = function(bookToDelete) {
