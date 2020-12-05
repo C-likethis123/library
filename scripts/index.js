@@ -5,7 +5,7 @@ function goToPage(pageName) {
   pages.forEach((page) => page.classList.contains(pageName) ? page.classList.add('active') : page.classList.remove('active'))
 }
 
-function Book(title, author='', page_num=0, book_cover="../assets/open-book.svg") {
+function Book(title, author='', page_num=0, book_cover) {
   this.title = title
   this.author = author
   this.page_num = page_num
@@ -32,7 +32,11 @@ Book.prototype.renderBook = function() {
   // render book cover
   const bookCoverCell = document.createElement("td")
   const bookCoverImage = document.createElement("img")
-  bookCoverImage.src = book_cover
+  if (book_cover) {
+    bookCoverImage.src = book_cover
+  } else {
+    bookCoverImage.classList.add('default')
+  }
   bookCoverCell.appendChild(bookCoverImage)
   bookRow.appendChild(bookCoverCell)
 

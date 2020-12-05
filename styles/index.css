@@ -11,6 +11,12 @@ html {
   display: initial;
 }
 
+img.default {
+  background-image: url('../assets/open-book.svg');
+  height: 4rem;
+  width: 4rem;
+}
+
 table {
   width: 100%;
   text-align: center;
