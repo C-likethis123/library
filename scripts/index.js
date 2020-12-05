@@ -14,12 +14,13 @@ function Book(title='', author='', page_num=0, isRead=false, id, book_cover) {
   this.id = id || Date.now()
 }
 
-Book.prototype.deleteBook = function(bookToDelete) {
-  books = books.filter(book => book.id !== bookToDelete.id)
+Book.prototype.deleteBook = function(id) {
+  books = books.filter(book => book.id !== id)
+  saveBooks(books)
 }
 
 Book.prototype.renderBook = function() {
-  const { title, author, page_num, book_cover, isRead } = this
+  const { title, author, page_num, book_cover, isRead, id } = this
   const bookRow = document.createElement("tr")
   // render checkbox
   const checkbox = document.createElement("input")
@@ -54,6 +55,17 @@ Book.prototype.renderBook = function() {
   const bookPageNumberCell = document.createElement("td")
   bookPageNumberCell.textContent = page_num
   bookRow.appendChild(bookPageNumberCell)
+
+  // render actions column
+  const actionsCell = document.createElement("td")
+  const deleteButton = document.createElement("button")
+  deleteButton.textContent = 'Delete'
+  deleteButton.onclick = () => {
+    this.deleteBook(id)
+    renderBooks()
+  }
+  actionsCell.appendChild(deleteButton)
+  bookRow.appendChild(actionsCell)
 
   return bookRow
 }
