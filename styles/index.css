@@ -3,6 +3,14 @@ html {
   font-family: 'Arial';
 }
 
+.page {
+  display: none;
+}
+
+.page.active {
+  display: initial;
+}
+
 table {
   width: 100%;
   text-align: center;
