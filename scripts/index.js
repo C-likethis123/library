@@ -5,13 +5,13 @@ function goToPage(pageName) {
   pages.forEach((page) => page.classList.contains(pageName) ? page.classList.add('active') : page.classList.remove('active'))
 }
 
-function Book(title, author='', page_num=0, book_cover) {
+function Book(title='', author='', page_num=0, isRead=false, id=Date.now(), book_cover) {
   this.title = title
   this.author = author
   this.page_num = page_num
   this.book_cover = book_cover
-  this.isRead = false
-  this.id = Date.now()
+  this.isRead = isRead
+  this.id = id
 }
 
 Book.prototype.deleteBook = function(bookToDelete) {
@@ -58,6 +58,10 @@ Book.prototype.renderBook = function() {
   return bookRow
 }
 
+function saveBooks(books) {
+  localStorage.setItem('books', JSON.stringify(books))
+}
+
 function addBook(event) {
   event.preventDefault()
   const title = document.querySelector("#title").value
@@ -66,6 +70,7 @@ function addBook(event) {
   const book_cover = document.querySelector("#book_cover").value
   const newBook = new Book(title, author, page_num, book_cover)
   books.push(newBook)
+  saveBooks(books)
   goToPage('home')
   renderBooks()
 }
@@ -91,4 +96,14 @@ function renderBooks() {
   }
 }
 
+function initData() {
+  const data = localStorage.getItem('books')
+  if (data) {
+    const parsedData = JSON.parse(data)
+    books = parsedData.map(({title, author, book_cover, isRead, page_num}) => new Book(title, author, page_num, book_cover, isRead))
+  }
+  
+}
+
+initData()
 renderBooks()
