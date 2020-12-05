@@ -5,13 +5,13 @@ function goToPage(pageName) {
   pages.forEach((page) => page.classList.contains(pageName) ? page.classList.add('active') : page.classList.remove('active'))
 }
 
-function Book(title='', author='', page_num=0, isRead=false, id=Date.now(), book_cover) {
+function Book(title='', author='', page_num=0, isRead=false, id, book_cover) {
   this.title = title
   this.author = author
   this.page_num = page_num
   this.book_cover = book_cover
   this.isRead = isRead
-  this.id = id
+  this.id = id || Date.now()
 }
 
 Book.prototype.deleteBook = function(bookToDelete) {
@@ -100,7 +100,7 @@ function initData() {
   const data = localStorage.getItem('books')
   if (data) {
     const parsedData = JSON.parse(data)
-    books = parsedData.map(({title, author, book_cover, isRead, page_num}) => new Book(title, author, page_num, book_cover, isRead))
+    books = parsedData.map(({title, author, book_cover, isRead, page_num, id}) => new Book(title, author, page_num, isRead, id, book_cover))
   }
   
 }
