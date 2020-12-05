@@ -27,6 +27,11 @@ td#empty {
   height: 400px;
 }
 
+.content {
+  min-height: 400px;
+  margin: 2rem;
+}
+
 div.header {
   display: flex;
   justify-content: space-between;
