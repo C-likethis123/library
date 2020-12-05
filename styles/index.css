@@ -19,7 +19,12 @@ img.default {
 
 table {
   width: 100%;
+  min-height: fit-content;
   text-align: center;
+}
+
+td#empty {
+  height: 400px;
 }
 
 div.header {

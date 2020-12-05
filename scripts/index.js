@@ -70,11 +70,25 @@ function addBook(event) {
   renderBooks()
 }
 
+function renderEmptyState() {
+  const row = document.createElement("tr")
+  const column = document.createElement("td")
+  column.colSpan = 6
+  column.textContent = 'There are no books yet. Add a book!'
+  column.id = 'empty'
+  row.appendChild(column)
+  return row
+}
+
 function renderBooks() {
   const bookDisplay = document.querySelector("tbody")
   const rowsToRemove = bookDisplay.querySelectorAll("tr")
   rowsToRemove.forEach(row => bookDisplay.removeChild(row))
-  books.forEach(book => bookDisplay.appendChild(book.renderBook()))
+  if (books.length > 0) {
+    books.forEach(book => bookDisplay.appendChild(book.renderBook()))
+  } else {
+    bookDisplay.appendChild(renderEmptyState())
+  }
 }
 
 renderBooks()
