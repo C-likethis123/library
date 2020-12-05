@@ -1,25 +1,8 @@
-// function Storage() {
-//   if (!localStorage.books) {
-//     localStorage.books = JSON.stringify([])
-//   }
-//   this.books = JSON.parse(localStorage.books)
-// }
-
-// Storage.prototype.saveBook = function(book) {
-//   this.books.push(book)
-//   localStorage.books = JSON.stringify(this.books)
-// }
-
-// Storage.prototype.getBook = function() {
-//   return JSON.stringify(localStorage.books)
-// }
-
 let books = []
 
 function goToPage(pageName) {
   const pages = document.querySelectorAll(".page")
-  console.log(pages)
-  pages.forEach((page) => page.classList.contains(pageName) ? page.classList.add('active') :page.classList.remove('active'))
+  pages.forEach((page) => page.classList.contains(pageName) ? page.classList.add('active') : page.classList.remove('active'))
 }
 
 function Book(title, author='', page_num=0, book_cover="../assets/open-book.svg") {
@@ -33,7 +16,32 @@ function Book(title, author='', page_num=0, book_cover="../assets/open-book.svg"
 
 Book.prototype.deleteBook = function(bookToDelete) {
   books = books.filter(book => book.id !== bookToDelete.id)
-} 
+}
+
+Book.prototype.renderBook = function() {
+  const { title, author, page_num, book_cover, isRead, id } = this
+  const bookRow = document.createElement("tr")
+  // render checkbox
+  const checkbox = document.createElement("input")
+  checkbox.type = "checkbox"
+  checkbox.value = isRead
+  const checkboxCell = document.createElement("td")
+  checkboxCell.appendChild(checkbox)
+  bookRow.appendChild(checkboxCell)
+
+  // render book cover
+  const bookCoverCell = document.createElement("td")
+  const bookCoverImage = document.createElement("img")
+  bookCoverImage.src = book_cover
+  bookCoverCell.appendChild(bookCoverImage)
+  bookRow.appendChild(bookCoverCell)
+
+  // render book title
+  const bookTitleCell = document.createElement("td")
+  bookTitleCell.textContent = title
+  bookRow.appendChild(bookTitleCell)
+  return bookRow
+}
 
 function addBook(event) {
   event.preventDefault()
@@ -44,26 +52,14 @@ function addBook(event) {
   const newBook = new Book(title, author, page_num, book_cover)
   books.push(newBook)
   goToPage('home')
+  renderBooks()
 }
 
-function initBooks() {
+function renderBooks() {
   const bookDisplay = document.querySelector("tbody")
-  books.forEach(book => {
-    const bookRow = document.createElement("tr")
-    const checkbox = document.createElement("input")
-    checkbox.type = "checkbox"
-    checkbox.value = book.isRead
-    const checkboxCell = document.createElement("td")
-    checkboxCell.appendChild(checkbox)
-    bookRow.appendChild(checkboxCell)
-
-    const bookCoverCell = document.createElement("td")
-    const book_cover = document.createElement("img")
-    book_cover.src = book.book_cover
-    bookCoverCell.appendChild(book_cover)
-    bookRow.appendChild(bookCoverCell)
-    bookDisplay.appendChild(bookRow)
-  })
+  const rowsToRemove = bookDisplay.querySelectorAll("tr")
+  rowsToRemove.forEach(row => bookDisplay.removeChild(row))
+  books.forEach(book => bookDisplay.appendChild(book.renderBook()))
 }
 
-initBooks()
+renderBooks()
