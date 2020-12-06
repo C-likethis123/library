@@ -114,7 +114,6 @@ function initData() {
     const parsedData = JSON.parse(data)
     books = parsedData.map(({title, author, book_cover, isRead, page_num, id}) => new Book(title, author, page_num, isRead, id, book_cover))
   }
-  
 }
 
 initData()
